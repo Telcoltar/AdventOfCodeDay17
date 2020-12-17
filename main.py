@@ -1,7 +1,7 @@
 import logging
 from argparse import ArgumentParser
-from itertools import product
 from typing import TextIO
+from itertools import product
 
 import numpy as np
 
@@ -11,7 +11,10 @@ parser.add_argument("--log", default="info")
 
 options = parser.parse_args()
 
-level = logging.INFO
+level = logging.DEBUG
+
+if options.log.lower() == "info":
+    level = logging.INFO
 
 logging.basicConfig(format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
                     level=level)
