@@ -7,7 +7,7 @@ import numpy as np
 
 
 def update_config(path):
-    fileConfig(path)  # Sensitive
+    fileConfig(path)
 
 
 def read_input_data(file_name: str) -> np.array:
