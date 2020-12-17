@@ -4,6 +4,10 @@ from typing import TextIO
 
 import numpy as np
 
+logging.basicConfig()
+
+logging.disable()
+
 logging.config.fileConfig(fname='log.ini')
 
 logger = logging.getLogger('dev')
