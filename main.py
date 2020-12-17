@@ -1,25 +1,12 @@
-import logging
-from argparse import ArgumentParser
-from typing import TextIO
+import logging.config
 from itertools import product
+from typing import TextIO
 
 import numpy as np
 
-parser: ArgumentParser = ArgumentParser()
+logging.config.fileConfig(fname='log.ini')
 
-parser.add_argument("--log", default="info")
-
-options = parser.parse_args()
-
-level = logging.DEBUG
-
-if options.log.lower() == "info":
-    level = logging.INFO
-
-logging.basicConfig(format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
-                    level=level)
-
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('dev')
 
 
 def read_input_data(file_name: str) -> np.array:
