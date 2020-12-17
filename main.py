@@ -5,15 +5,9 @@ from typing import TextIO
 
 import numpy as np
 
-logging.basicConfig()
-
-logging.disable()
-
-logger = logging.getLogger('dev')
-
 
 def update_config(path):
-    fileConfig(path)
+    fileConfig(path)  # Sensitive
 
 
 def read_input_data(file_name: str) -> np.array:
@@ -82,7 +76,7 @@ def cycle_4d(grid: np.array) -> np.array:
     padded_grid: np.array = pad_grid(grid)
     shape: tuple[int, int, int, int] = padded_grid.shape
     logger.debug(shape)
-    for indices in product(*[list(range(1, j-1)) for j in shape]):
+    for indices in product(*[list(range(1, j - 1)) for j in shape]):
         if const_padded_grid[indices] == 1:
             logger.debug(f" coord: {indices}, AN: {get_active_neighbor_cubes(const_padded_grid, indices)}")
             if not 2 <= get_active_neighbor_cubes(const_padded_grid, indices) <= 3:
@@ -104,5 +98,6 @@ def solution_part_2(file_name: str) -> np.ndarray:
 
 if __name__ == '__main__':
     update_config("log.ini")
+    logger = logging.getLogger('dev')
     logger.info(solution_part_1("inputData.txt"))
     logger.info(solution_part_2("inputData.txt"))
