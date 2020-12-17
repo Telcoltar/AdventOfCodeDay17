@@ -1,5 +1,6 @@
-import logging.config
+import logging
 from itertools import product
+from logging.config import fileConfig
 from typing import TextIO
 
 import numpy as np
@@ -8,9 +9,11 @@ logging.basicConfig()
 
 logging.disable()
 
-logging.config.fileConfig(fname='log.ini')
-
 logger = logging.getLogger('dev')
+
+
+def update_config(path):
+    fileConfig(path)
 
 
 def read_input_data(file_name: str) -> np.array:
@@ -100,5 +103,6 @@ def solution_part_2(file_name: str) -> np.ndarray:
 
 
 if __name__ == '__main__':
+    update_config("log.ini")
     logger.info(solution_part_1("inputData.txt"))
     logger.info(solution_part_2("inputData.txt"))
